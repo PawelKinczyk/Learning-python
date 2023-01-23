@@ -70,4 +70,5 @@ dir ='C:\\Windows\\Sys\\text.txt'
 os.path.basename(dir)
 os.path.dirname(dir)
 
-
+https://automatetheboringstuff.com/2e/chapter9/
+Also, note that os.path.split() does not take a file path and return a list of strings of each folder. For that, use the split() string method and split on the string in os.sep. (Note that sep is in os, not os.path.) The os.sep variable is set to the correct folder-separating slash for the computer running the program, '\\' on Windows and '/' on macOS and Linux, and splitting on it will return a list of the individual folders.
