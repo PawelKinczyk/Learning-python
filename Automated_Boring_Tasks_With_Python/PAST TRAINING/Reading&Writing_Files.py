@@ -32,11 +32,11 @@ import os
 
 # Change curent directory
 
-Path.cwd()
-os.chdir('C:\\Windows\\System32')
-Path.cwd()
+# Path.cwd()
+# os.chdir('C:\\Windows\\System32')
+# Path.cwd()
 
-Path.home()
+# Path.home()
 
 # Relative and absolute path
 # ..\ -before folder
@@ -66,9 +66,30 @@ Path.home()
 
 # The same with os.dir
 
-dir ='C:\\Windows\\Sys\\text.txt'
-os.path.basename(dir)
-os.path.dirname(dir)
+# dir ='C:\\Windows\\Sys\\text.txt'
+# os.path.basename(dir)
+# os.path.dirname(dir)
 
-https://automatetheboringstuff.com/2e/chapter9/
-Also, note that os.path.split() does not take a file path and return a list of strings of each folder. For that, use the split() string method and split on the string in os.sep. (Note that sep is in os, not os.path.) The os.sep variable is set to the correct folder-separating slash for the computer running the program, '\\' on Windows and '/' on macOS and Linux, and splitting on it will return a list of the individual folders.
+# Finding file sizes and folder content
+
+# os.path.getsize(os.getcwd())
+
+# List of size
+# p = Path('C:/Users/pawel/Documents/GitHub/Learning-python')
+# list = [p.glob('*')]
+# print(list[0])
+# list(p.glob('*.txt'))
+
+# for file in p.glob('*'):
+#     print(file)
+
+# Checking and path validation
+# list = []
+# list.append(Path('C:/Windows'))
+# list.append(Path('C:/This/Folder/Does/Not/Exist'))
+# list.append(Path('C:/Windows/you'))
+
+# for path in list:
+#     path.exists()
+#     path.is_dir()
+
