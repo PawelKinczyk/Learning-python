@@ -93,3 +93,15 @@ import os
 #     path.exists()
 #     path.is_dir()
 
+# Opening Files with the open() Function
+p = Path('C:/Users/pawel/Documents/GitHub/Learning-python/Automated_Boring_Tasks_With_Python')
+text_file= open(p / 'text.txt')
+text_content = text_file.read()
+text_content
+
+text_file.readlines()
+
+# Writing to files
+write_text = open('C:/Users/pawel/Documents/GitHub/Learning-python/Automated_Boring_Tasks_With_Python/write_text.txt', 'w') # if file doesnt exist it will create it
+write_text.write("Hi all i am PAwel\n") # write something
+write_text.close() # close file
