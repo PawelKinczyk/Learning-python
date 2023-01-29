@@ -1,0 +1,24 @@
+2023-01-29 15:14:45,244 -  DEBUG -  Start of program
+2023-01-29 15:14:45,245 -  DEBUG -  Start of factorial(5%)
+2023-01-29 15:14:45,245 -  DEBUG -  i is 0, total is 0
+2023-01-29 15:14:45,245 -  DEBUG -  i is 1, total is 0
+2023-01-29 15:14:45,245 -  DEBUG -  i is 2, total is 0
+2023-01-29 15:14:45,245 -  DEBUG -  i is 3, total is 0
+2023-01-29 15:14:45,245 -  DEBUG -  i is 4, total is 0
+2023-01-29 15:14:45,245 -  DEBUG -  i is 5, total is 0
+2023-01-29 15:14:45,246 -  DEBUG -  End of factorial(5%)
+2023-01-29 15:14:45,246 -  DEBUG -  End of program
+2023-01-29 15:14:45,246 -  DEBUG -  Start of program
+2023-01-29 15:14:45,254 -  DEBUG -  Start of factorial(5%)
+2023-01-29 15:14:45,254 -  DEBUG -  i is 1, total is 1
+2023-01-29 15:14:45,254 -  DEBUG -  i is 2, total is 2
+2023-01-29 15:14:45,254 -  DEBUG -  i is 3, total is 6
+2023-01-29 15:14:45,254 -  DEBUG -  i is 4, total is 24
+2023-01-29 15:14:45,255 -  DEBUG -  i is 5, total is 120
+2023-01-29 15:14:45,255 -  DEBUG -  End of factorial(5%)
+2023-01-29 15:14:45,255 -  DEBUG -  End of program
+2023-01-29 15:14:45,255 -  DEBUG -  Some debugging details.
+2023-01-29 15:14:45,255 -  INFO -  The logging module is working.
+2023-01-29 15:14:45,255 -  WARNING -  An error message is about to be logged.
+2023-01-29 15:14:45,256 -  ERROR -  An error has occurred.
+2023-01-29 15:14:45,256 -  CRITICAL -  The program is unable to recover!
