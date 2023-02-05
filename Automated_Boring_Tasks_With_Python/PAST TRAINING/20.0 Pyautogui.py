@@ -130,3 +130,9 @@ pyautogui.keyDown('shift'); pyautogui.press('4'); pyautogui.keyUp('shift')
 ## Hotkey combination
 pyautogui.hotkey('ctrl', 'c')
 
+# Prompt in 
+
+pyautogui.alert('This is a message.', 'Important')
+pyautogui.confirm('Do you want to continue?') # Click Cancel
+pyautogui.prompt("What is your cat's name?")
+pyautogui.password('What is the password?')
