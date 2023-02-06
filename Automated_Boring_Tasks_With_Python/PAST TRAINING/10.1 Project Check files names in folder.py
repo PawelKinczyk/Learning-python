@@ -52,7 +52,7 @@ for i in excel_list:
 
 n+=1
 sheet_cell = 'B{}'.format(n)
-other_files = file_list = excel_list
+other_files = list(set(file_list) - set(excel_list))
 excel_sheet[sheet_cell] = list_to_string(other_files)
 
 # Overwrite excel 

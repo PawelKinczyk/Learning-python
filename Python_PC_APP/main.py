@@ -10,7 +10,7 @@ def browse_button_folder():
 
     global folder_path
     filename =fd.askdirectory()
-    folder_path_.set(filename)
+    folder_path.set(filename)
     print(filename)
     
 
@@ -31,18 +31,19 @@ def list_to_string(list):
 
 def check_files(folder_path, file_path):
     # Get path files 
-
+    print("sciezka folderu: "+folder_path)
     p = Path(folder_path)
     folder = p.glob('*')
+    
     # Collect names inside folder
-
+    print(p)
     file_list = []
     for i in folder:
         file_list.append(Path(i).stem)
-        print(i)
+        print("file list" + str(i))
 
     # Open excel file
-
+    print("sciezka pliku: "+file_path)
     excel = load_workbook(filename=file_path)
 
     excel_sheet = excel['Arkusz1'] # Pick defaul worksheet
@@ -55,8 +56,9 @@ def check_files(folder_path, file_path):
         print(i.value)
 
     # Search for listed files in folder
-
+    
     n=0
+    print("To wartosc n " + str(n))
     for i in excel_list:
         n+=1
         sheet_cell = 'B{}'.format(n)
@@ -67,20 +69,21 @@ def check_files(folder_path, file_path):
 
     # Return not listed files inside folder 
 
-    n+=1
-    sheet_cell = 'B{}'.format(n)
-    other_files = file_list = excel_list
+    m=n+1
+    sheet_cell = 'B{}'.format(m)
+    other_files = list(set(file_list) - set(excel_list))
     excel_sheet[sheet_cell] = list_to_string(other_files)
 
     # Overwrite excel 
 
-    excel.save(filename="C:/Users/pawel/Desktop/FOLDER_1/Nowy folder/pyth prog.xlsx")
+    excel.save(filename=file_path)
     excel.close()
 
 
 window = tk.Tk()
-
-logo = ImageTk.PhotoImage(Image.open("C:/Users/pawel/Documents/GitHub/Learning-python/Python_PC_APP/Image_Logo.png"))
+logo = Image.open("C:/Users/pawel/Documents/GitHub/Learning-python/Python_PC_APP/Image_Logo.png")
+logo = logo.resize((200,240))
+logo = ImageTk.PhotoImage(logo)
 
 # logo = tk.PhotoImage(file="C:/Users/pawel/Documents/GitHub/Learning-python/Python_PC_APP/Image_Logo.png")
 
@@ -89,47 +92,54 @@ window.geometry('500x400')
 window.title('Folder checker')
 
 ## Logo and text
-frame_logo = tk.Frame(master=window, width = 200)
+frame_logo = tk.Frame(master=window, width = 280)
 label_logo = tk.Label(master = frame_logo, image=logo)
-label_logo_text = tk.Label(master = frame_logo, text="Paweł Kińczyk (c) My blog:https://produktywnyprojektant.com"
-, wraplength=150, justify="center")
+label_logo_text = tk.Label(master = frame_logo, text="Paweł Kińczyk (c) My blog: https://produktywnyprojektant.com"
+, wraplength=200, justify="center")
 label_logo.pack()
 label_logo_text.pack()
 
 ## Ask for folder path
-frame_path = tk.Frame(master=window, width=150, bg="yellow")
+frame_path = tk.Frame(master=window, width=150, bg="gray")
 
 label_path = tk.Label(master = frame_path, text="Pick path to folder in which you want to check files")
 folder_path = tk.StringVar()
-label_path_picked = tk.Label(master=frame_path,textvariable=folder_path)
+folder_path.set("***Folder Path***")
+label_path_picked = tk.Label(master=frame_path, wraplength=250,textvariable=folder_path)
 button_path = tk.Button(master = frame_path, text="Browse", command=browse_button_folder)
-entry_path = tk.Entry(master = frame_path)
+# entry_path = tk.Entry(master = frame_path)
 
+# frame_file = tk.Frame(master=window, width=150, bg="blue")
 
 file_path = tk.StringVar()
-label_file_picked = tk.Label(master=frame_path,textvariable=file_path)
+file_path.set("***File Path***")
+label_file_picked = tk.Label(master=frame_path, wraplength=250,textvariable=file_path)
 button_file = tk.Button(master = frame_path, text="Browse", command=browse_button_file)
 
 label_path.pack()
 label_path_picked.pack()
 button_path.pack()
-entry_path.pack()
+# entry_path.pack()
 
 label_excel = tk.Label(master = frame_path, text="Insert excel path which you want to check")
-entry_excel = tk.Entry(master = frame_path)
+# entry_excel = tk.Entry(master = frame_path)
 label_excel.pack()
-entry_excel.pack()
+# entry_excel.pack()
 label_file_picked.pack()
 button_file.pack()
 
 ## Run code
 
-button_run = tk.Button(master = frame_path, text="Run", command= lambda: check_files(button_path.getvar(),button_file.getvar()))
+button_run = tk.Button(master = frame_path, text="Run", command= lambda: check_files(str(folder_path.get()),str(file_path.get())))
 button_run.pack()
 
+# Grid
+# frame_file.grid(row=0,column=0)
+# frame_path.grid(row=1,column=0)
 ## Show frames
 
 frame_logo.pack(fill=tk.BOTH, side=tk.LEFT, expand=False)
 frame_path.pack(fill=tk.BOTH, side=tk.LEFT, expand=True)
+
 
 window.mainloop() # take program in loop
