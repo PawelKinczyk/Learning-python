@@ -11,7 +11,7 @@ import win32con
 
 class WindowCapture:
 
-    # properties
+    # Properties
     w = 0
     h = 0
     hwnd = None
@@ -26,12 +26,12 @@ class WindowCapture:
         if not self.hwnd:
             raise Exception(f"Window not found {self.windowname}")
 
-        # get window size
+        # Get window size to cut border
         window_rect = win32gui.GetWindowRect(self.hwnd)
         self.w = window_rect[2] - window_rect[0]
         self.h = window_rect[3] - window_rect[1]
 
-        # cut window border and titlebar
+        # Cut window border and titlebar
         border_pixels = 8
         titlebar_pixels = 30
         self.w = self.w - (border_pixels * 2)
@@ -39,7 +39,7 @@ class WindowCapture:
         self.cropped_x = border_pixels
         self.cropped_y = titlebar_pixels
 
-        # coordinates of screen
+        # Coordinates of screen
         self.offset_x = window_rect[0] + self.cropped_x
         self.offset_y = window_rect[1] + self.cropped_y
 
@@ -50,6 +50,7 @@ class WindowCapture:
 
     win32gui.EnumWindows(winEnumHandler, None)
 
+    # Get window position
     def getPosition(self, pos):
         return (pos[0] + self.offset_x, pos[1]+self.offset_y)
 
@@ -63,7 +64,6 @@ class WindowCapture:
         cDC.SelectObject(dataBitMap)
         cDC.BitBlt((0, 0), (self.w, self.h), dcObj,
                    (self.cropped_x, self.cropped_y), win32con.SRCCOPY)
-        # dataBitMap.SaveBitmapFile(cDC, bmpfilenamename)
 
         signedIntsArray = dataBitMap.GetBitmapBits(True)
         img = np.fromstring(signedIntsArray, dtype="uint8")
@@ -87,8 +87,6 @@ loop_time = time()
 while (True):
 
     screenshot = wind.screenshotGet()
-    # screenshot = np.array(screenshot)
-    # screenshot = cv.cvtColor(screenshot, cv.COLOR_RGB2BGR)
 
     cv.imshow("Computer vision", screenshot)
 
